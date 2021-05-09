@@ -30,8 +30,8 @@ public class Employee {
 	@Column(name="LastName")
 	private String lastName;
 	
-	@Column(name="TcNo")
-	private String tcNo;
+	@Column(name="IdentityNumber")
+	private String identityNumber;
 	
 	@Column(name="BirthYear")
 	private String birthYear;
@@ -39,7 +39,7 @@ public class Employee {
 	@Column(name="IsValid")
 	private boolean isValid;
 
-	public Employee(int id, int jobPositionId, int userId, int firstName, String lastName, String tcNo,
+	public Employee(int id, int jobPositionId, int userId, int firstName, String lastName, String identityNumber,
 			String birthYear, boolean isValid) {
 		super();
 		this.id = id;
@@ -47,7 +47,7 @@ public class Employee {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.tcNo = tcNo;
+		this.identityNumber = identityNumber;
 		this.birthYear = birthYear;
 		this.isValid = isValid;
 	}
