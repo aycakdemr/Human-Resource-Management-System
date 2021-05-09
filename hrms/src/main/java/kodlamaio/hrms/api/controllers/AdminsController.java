@@ -7,25 +7,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.SystemUserService;
-
-
-import kodlamaio.hrms.entities.concretes.SystemUser;
+import kodlamaio.hrms.business.abstracts.AdminService;
+import kodlamaio.hrms.entities.concretes.Admin;
 
 
 @RestController
 @RequestMapping("/api/systemusers")
-public class SystemUsersController {
-	private SystemUserService systemUserService;
+public class AdminsController {
+	private AdminService adminService;
 
 	@Autowired
-	public SystemUsersController(SystemUserService systemUserService) {
+	public AdminsController(AdminService adminService) {
 		super();
-		this.systemUserService = systemUserService;
+		this.adminService = adminService;
 	}
 	@GetMapping("/getall")
-	public List<SystemUser> getAll(){
-		return systemUserService.getAll();
+	public List<Admin> getAll(){
+		return adminService.getAll();
 	}
 	
 }

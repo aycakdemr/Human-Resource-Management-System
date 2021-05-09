@@ -10,8 +10,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="SystemUsers")
-public class SystemUser {
+@Table(name="Admins")
+public class Admin {
 	@Id
 	@GeneratedValue
 	@Column(name="Id")
@@ -23,14 +23,14 @@ public class SystemUser {
 	@Column(name="Roles")
 	private String roles;
 
-	public SystemUser(int id, int userId, String roles) {
+	public Admin() {
+	}
+	public Admin(int id, int userId, String roles) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.roles = roles;
 	}
 
-	public SystemUser() {
-		super();
-	}
+	
 }

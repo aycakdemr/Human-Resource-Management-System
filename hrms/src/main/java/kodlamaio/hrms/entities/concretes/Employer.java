@@ -23,9 +23,6 @@ public class Employer {
 	@Column(name="UserId")
 	private int userId;
 	
-	@Column(name="SystemUserId")
-	private int systemUserId;
-	
 	@Column(name="CompanyName")
 	private String companyName;
 	
@@ -38,13 +35,12 @@ public class Employer {
 	public Employer() {}
 	
 	
-	public Employer(int id, int jobPositionId, int userId, int systemUserId, String companyName, String webSite,
+	public Employer(int id, int jobPositionId, int userId, String companyName, String webSite,
 			String phoneNumber) {
 		super();
 		this.id = id;
 		this.jobPositionId = jobPositionId;
 		this.userId = userId;
-		this.systemUserId = systemUserId;
 		this.companyName = companyName;
 		this.webSite = webSite;
 		this.phoneNumber = phoneNumber;
