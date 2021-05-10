@@ -18,9 +18,6 @@ public class JobSeeker {
 	@Column(name="Id")
 	private int id;
 	
-	@Column(name="UserId")
-	private int userId;
-	
 	@Column(name="FirstName")
 	private int firstName;
 	
@@ -33,11 +30,10 @@ public class JobSeeker {
 	@Column(name="BirthYear")
 	private String birthYear;
 
-	public JobSeeker(int id, int jobPositionId, int userId, int firstName, String lastName, String identityNumber,
+	public JobSeeker(int id, int jobPositionId, int firstName, String lastName, String identityNumber,
 			String birthYear) {
 		super();
 		this.id = id;
-		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.identityNumber = identityNumber;

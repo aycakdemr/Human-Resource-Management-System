@@ -22,17 +22,13 @@ public class User {
 	
 	@Column(name="Password")
 	private String password;
-	
-	@Column(name="PasswordRepeat")
-	private String passwordRepeat;
-	
 
-	public User(int id, String eMail, String password, String passwordRepeat) {
+
+	public User(int id, String eMail, String password) {
 		super();
 		this.id = id;
 		this.eMail = eMail;
 		this.password = password;
-		this.passwordRepeat = passwordRepeat;
 	}
 
 
