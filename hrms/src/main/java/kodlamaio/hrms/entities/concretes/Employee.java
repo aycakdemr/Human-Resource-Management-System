@@ -20,16 +20,16 @@ public class Employee{
 	@Column(name="UserId")
 	private int userId;
 
-	@Column(name="Roles")
-	private String roles;
+	@Column(name="JobpositionId")
+	private int jobpositionId;
 
 	public Employee() {
 	}
-	public Employee(int id, int userId, String roles) {
+	public Employee(int id, int userId, int JobpositionId) {
 		super();
 		this.id = id;
 		this.userId = userId;
-		this.roles = roles;
+		this.jobpositionId = JobpositionId;
 	}
 
 	
