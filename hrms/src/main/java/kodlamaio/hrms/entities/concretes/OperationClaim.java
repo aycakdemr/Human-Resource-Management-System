@@ -10,29 +10,25 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="employees")
-public class Employee{
+@Table(name="operation_claims")
+public class OperationClaim {
 	@Id
 	@GeneratedValue
 	@Column(name="Id")
 	private int id;
 	
-	@Column(name="UserId")
-	private int userId;
-
-	@Column(name="Roles")
-	private String roles;
-
-	public Employee() {
-	}
-	public Employee(int id, int userId, String roles) {
+	@Column(name="Name")
+	private String Name;
+	
+	
+	public OperationClaim(int id, String name) {
 		super();
 		this.id = id;
-		this.userId = userId;
-		this.roles = roles;
+		Name = name;
 	}
 
-	
+
+	public OperationClaim() {
+		super();
+	}
 }
-
-

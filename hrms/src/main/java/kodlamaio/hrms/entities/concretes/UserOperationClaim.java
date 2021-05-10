@@ -10,8 +10,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="Admins")
-public class Admin {
+@Table(name="user_operation_claims")
+public class UserOperationClaim {
 	@Id
 	@GeneratedValue
 	@Column(name="Id")
@@ -20,17 +20,18 @@ public class Admin {
 	@Column(name="UserId")
 	private int userId;
 
-	@Column(name="Roles")
-	private String roles;
-
-	public Admin() {
-	}
-	public Admin(int id, int userId, String roles) {
+	@Column(name="OperationClaimId")
+	private int operationClaimId;
+	
+	public UserOperationClaim(int id, int userId, int operationClaimId) {
 		super();
 		this.id = id;
 		this.userId = userId;
-		this.roles = roles;
+		this.operationClaimId = operationClaimId;
 	}
 
-	
+	public UserOperationClaim() {
+		super();
+	}
+
 }
