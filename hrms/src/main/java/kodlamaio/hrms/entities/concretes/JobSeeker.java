@@ -15,19 +15,19 @@ import lombok.Data;
 public class JobSeeker {
 	@Id
 	@GeneratedValue
-	@Column(name="Id")
+	@Column(name="id")
 	private int id;
 	
-	@Column(name="FirstName")
+	@Column(name="first_name")
 	private int firstName;
 	
-	@Column(name="LastName")
+	@Column(name="last_name")
 	private String lastName;
 	
-	@Column(name="IdentityNumber")
+	@Column(name="identity_number")
 	private String identityNumber;
 	
-	@Column(name="BirthYear")
+	@Column(name="birth_year")
 	private String birthYear;
 
 	public JobSeeker(int id, int jobPositionId, int firstName, String lastName, String identityNumber,

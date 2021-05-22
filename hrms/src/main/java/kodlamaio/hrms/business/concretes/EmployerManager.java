@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
+import kodlamaio.hrms.entities.concretes.Employee;
 import kodlamaio.hrms.entities.concretes.Employer;
 
 @Service
@@ -22,9 +25,9 @@ public class EmployerManager implements EmployerService{
 
 
 	@Override
-	public List<Employer> getAll() {
+	public DataResult<List<Employer>> getAll() {
 	
-		return employerDao.findAll();
+		return new SuccessDataResult<List<Employer>>(employerDao.findAll());
 	}
 
 }

@@ -14,22 +14,22 @@ import lombok.Data;
 public class Employer {
 	@Id
 	@GeneratedValue
-	@Column(name="Id")
+	@Column(name="id")
 	private int id;
 	
-	@Column(name="JobPositionId")
+	@Column(name="job_position_id")
 	private int jobPositionId;
 	
-	@Column(name="UserId")
+	@Column(name="user_id")
 	private int userId;
 	
-	@Column(name="CompanyName")
+	@Column(name="company_name")
 	private String companyName;
 	
-	@Column(name="WebSite")
+	@Column(name="web_site")
 	private String webSite;
 	
-	@Column(name="PhoneNumber")
+	@Column(name="phone_number")
 	private String phoneNumber;
 
 	public Employer() {}

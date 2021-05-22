@@ -14,13 +14,13 @@ import lombok.Data;
 public class UserOperationClaim {
 	@Id
 	@GeneratedValue
-	@Column(name="Id")
+	@Column(name="id")
 	private int id;
 	
-	@Column(name="UserId")
+	@Column(name="user_id")
 	private int userId;
 
-	@Column(name="OperationClaimId")
+	@Column(name="operation_claim_id")
 	private int operationClaimId;
 	
 	public UserOperationClaim(int id, int userId, int operationClaimId) {

@@ -14,7 +14,7 @@ import lombok.Data;
 public class User {
 	@Id
 	@GeneratedValue
-	@Column(name="Id")
+	@Column(name="id")
 	private int id;
 	
 	@Column(name="EMail")

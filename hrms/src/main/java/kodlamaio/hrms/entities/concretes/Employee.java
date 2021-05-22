@@ -14,13 +14,13 @@ import lombok.Data;
 public class Employee{
 	@Id
 	@GeneratedValue
-	@Column(name="Id")
+	@Column(name="id")
 	private int id;
 	
-	@Column(name="UserId")
+	@Column(name="user_id")
 	private int userId;
 
-	@Column(name="JobpositionId")
+	@Column(name="jobPosition_id")
 	private int jobpositionId;
 
 	public Employee() {
