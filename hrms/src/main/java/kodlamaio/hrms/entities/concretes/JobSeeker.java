@@ -5,19 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@Data
 @Entity
+@Table(name="job_seekers")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="job_seekers")
-public class JobSeeker {
+@PrimaryKeyJoinColumn(name = "id")
+
+public class JobSeeker extends User{
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
@@ -35,13 +38,4 @@ public class JobSeeker {
 	@Column(name="birth_year")
 	private int birthYear;
 	
-	@Column(name="email")
-	private String eMail;
-	
-	@Column(name="password")
-	private String password;
-
-	@Column(name="password_repeat")
-	private String passwordRepeat;
-
 }
