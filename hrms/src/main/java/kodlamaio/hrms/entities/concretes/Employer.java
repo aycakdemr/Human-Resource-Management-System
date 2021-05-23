@@ -6,10 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="employers")
 public class Employer {
 	@Id
@@ -20,9 +24,6 @@ public class Employer {
 	@Column(name="job_position_id")
 	private int jobPositionId;
 	
-	@Column(name="user_id")
-	private int userId;
-	
 	@Column(name="company_name")
 	private String companyName;
 	
@@ -31,19 +32,16 @@ public class Employer {
 	
 	@Column(name="phone_number")
 	private String phoneNumber;
+	
+	@Column(name="email")
+	private String eMail;
+	
+	@Column(name="password")
+	private String password;
 
-	public Employer() {}
-	
-	
-	public Employer(int id, int jobPositionId, int userId, String companyName, String webSite,
-			String phoneNumber) {
-		super();
-		this.id = id;
-		this.jobPositionId = jobPositionId;
-		this.userId = userId;
-		this.companyName = companyName;
-		this.webSite = webSite;
-		this.phoneNumber = phoneNumber;
-	}
+	@Column(name="password_repeat")
+	private String passwordRepeat;
+
+
 	
 }

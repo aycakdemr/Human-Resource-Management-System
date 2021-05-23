@@ -17,11 +17,14 @@ public class User {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="EMail")
+	@Column(name="email")
 	private String eMail;
 	
-	@Column(name="Password")
+	@Column(name="password")
 	private String password;
+
+	@Column(name="password_repeat")
+	private String passwordRepeat;
 
 
 	public User(int id, String eMail, String password) {
