@@ -26,8 +26,11 @@ public class Employee extends User{
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="jobPosition_id")
-	private int jobpositionId;
+	@Column(name="last_name")
+	private String lastName;
+	
+	@Column(name="first_name")
+	private String firstName;
 
 
 

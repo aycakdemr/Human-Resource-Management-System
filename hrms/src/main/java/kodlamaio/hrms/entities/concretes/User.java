@@ -23,14 +23,12 @@ public class User {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="email")
+	@Column(name="email_address")
 	private String eMail;
 	
 	@Column(name="password")
 	private String password;
 
-	@Column(name="password_repeat")
-	private String passwordRepeat;
 
 
 

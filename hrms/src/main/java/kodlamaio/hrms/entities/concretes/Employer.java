@@ -25,14 +25,11 @@ public class Employer extends User{
 	@Column(name="id")
 	private int id;
 
-	@Column(name="job_position_id")
-	private int jobPositionId;
-	
 	@Column(name="company_name")
 	private String companyName;
 	
-	@Column(name="web_site")
-	private String webSite;
+	@Column(name="web_address")
+	private String webAddress;
 	
 	@Column(name="phone_number")
 	private String phoneNumber;
