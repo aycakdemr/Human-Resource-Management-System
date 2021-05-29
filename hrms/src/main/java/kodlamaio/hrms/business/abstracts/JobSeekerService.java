@@ -8,6 +8,5 @@ import kodlamaio.hrms.entities.concretes.JobSeeker;
 
 public interface JobSeekerService {
 	DataResult<List<JobSeeker>> getAll();
-	DataResult<JobSeeker> getByIdentificationNumber(String identificationNumber);
 	Result add(JobSeeker JobSeeker);
 }

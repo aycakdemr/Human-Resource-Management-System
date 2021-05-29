@@ -10,5 +10,4 @@ import kodlamaio.hrms.entities.concretes.JobSeeker;
 public interface EmployerService {
 	DataResult<List<Employer>> getAll();
 	Result add(Employer employer);
-	DataResult<Employer> getByemail(String email);
 }
