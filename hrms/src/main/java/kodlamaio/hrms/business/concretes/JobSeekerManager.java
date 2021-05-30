@@ -64,7 +64,7 @@ public class JobSeekerManager implements JobSeekerService{
 		if(JobSeeker.getPassword() == null) {
 			return new ErrorResult("şifre alanı boş geçilemez");
 		}
-		if(JobSeeker.getEMail() == null) {
+		if(JobSeeker.getEmail() == null) {
 			return new ErrorResult("email alanı boş geçilemez");
 		}
 		if(JobSeeker.getIdentityNumber() == null) {
@@ -82,7 +82,7 @@ public class JobSeekerManager implements JobSeekerService{
 		return new SuccessResult();
 	}
 	private Result controlEMail(JobSeeker JobSeeker) {
-		if(jobSeekerDao.getByeMail(JobSeeker.getEMail()) != null){
+		if(jobSeekerDao.getByeMail(JobSeeker.getEmail()) != null){
 	         return new ErrorResult("Aynı email zaten var.");
 	    }
 		return new SuccessResult();

@@ -16,7 +16,7 @@ public class JobSeekerValidaton implements MernisValidation<JobSeeker>{
 	@Override
 	public Result validate(JobSeeker t) {
 		String expression = "^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-	    CharSequence inputStr = t.getEMail();
+	    CharSequence inputStr = t.getEmail();
 	    Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
 	    Matcher matcher = pattern.matcher(inputStr);
 	    if(t.getIdentityNumber().length() != 11) {

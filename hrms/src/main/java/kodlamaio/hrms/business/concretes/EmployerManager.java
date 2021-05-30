@@ -64,7 +64,7 @@ public class EmployerManager implements EmployerService{
 
 
 	private Result controlEMail(Employer employer) {
-		if(employerDao.getByeMail(employer.getEMail()) != null){
+		if(employerDao.getByeMail(employer.getEmail()) != null){
 	         return new ErrorResult("Aynı email zaten var.");
 	    }
 		return new SuccessResult();
@@ -75,7 +75,7 @@ public class EmployerManager implements EmployerService{
 		if(employer.getCompanyName() == null) {
 			return new ErrorResult("şirket adı alanı boş geçilemez");
 		}
-		if(employer.getEMail() == null) {
+		if(employer.getEmail() == null) {
 			return new ErrorResult("email alanı boş geçilemez");
 		}
 		if(employer.getPassword() == null) {
