@@ -3,35 +3,32 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
+import kodlamaio.hrms.business.abstracts.VerificationService;
 import kodlamaio.hrms.core.utilities.business.BusinessRules;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.core.utilities.verification.EMailVerificationService;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
-import kodlamaio.hrms.entities.concretes.Employee;
 import kodlamaio.hrms.entities.concretes.Employer;
-import kodlamaio.hrms.entities.concretes.JobSeeker;
+import kodlamaio.hrms.entities.concretes.Verification;
 
 @Service
 
 public class EmployerManager implements EmployerService{
 	
 	private EmployerDao employerDao;
-	private EMailVerificationService<Employer> verificationService;
+	private VerificationService verificationService;
 	
 	@Autowired
-	public EmployerManager(EmployerDao employerDao,EMailVerificationService<Employer> verificationService) {
+	public EmployerManager(EmployerDao employerDao,VerificationService verificationService) {
 		super();
 		this.employerDao = employerDao;
-		this.verificationService =verificationService;
+		this.verificationService = verificationService;
 	}
 
 
@@ -47,12 +44,11 @@ public class EmployerManager implements EmployerService{
 		
 		Result result = BusinessRules.run(controlEMail(employer),infosNullControl(employer));
 	
-		if(!(verificationService.verification(employer).isSuccess())){
-			return new ErrorResult("email doğrulama hatası");
-		}
 		if(result.isSuccess()) {	
-			
-			
+			Verification v = new Verification();
+			v.setUser(employer);
+			v.setVerified(true);
+			this.verificationService.add(v);
 			this.employerDao.save(employer);
 			return new SuccessResult("İş veren eklendi");
 			
@@ -64,7 +60,7 @@ public class EmployerManager implements EmployerService{
 
 
 	private Result controlEMail(Employer employer) {
-		if(employerDao.getByeMail(employer.getEmail()) != null){
+		if(employerDao.getByemail(employer.getEmail()) != null){
 	         return new ErrorResult("Aynı email zaten var.");
 	    }
 		return new SuccessResult();
