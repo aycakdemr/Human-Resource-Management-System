@@ -7,14 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import kodlamaio.hrms.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,29 +23,24 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@PrimaryKeyJoinColumn(name = "id")
-@Table(name="employers")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisement"})
-public class Employer extends User{
+@Table(name="school_departments")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","schoolJobSeekers"})
+public class SchoolDepartment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-
-	@Column(name="company_name")
-	private String companyName;
 	
-	@Column(name="web_address")
-	private String webAddress;
+	@ManyToOne()
+	@JoinColumn(name="school_id")
+	private School school;
 	
-	@Column(name="phone_number")
-	private String phoneNumber;
+	@ManyToOne()
+	@JoinColumn(name="department_id")
+	private Department department;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "employer")
-	private List<JobAdvertisement> jobAdvertisement;
-
-
-	
+	@OneToMany(mappedBy = "schoolDepartment")
+	private List<SchoolJobSeeker> schoolJobSeekers;
 }

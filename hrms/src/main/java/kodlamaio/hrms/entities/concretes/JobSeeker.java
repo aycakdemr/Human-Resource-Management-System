@@ -1,12 +1,18 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlamaio.hrms.core.entities.User;
 import lombok.AllArgsConstructor;
@@ -19,6 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","schoolJobSeekers","languageJobSeekers"})
 
 public class JobSeeker extends User{
 
@@ -38,5 +45,13 @@ public class JobSeeker extends User{
 	
 	@Column(name="birth_date")
 	private int birthYear;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobSeeker")
+	private List<SchoolJobSeeker> schoolJobSeekers;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobseeker")
+	private List<LanguageJobSeeker> languageJobSeekers;
 	
 }
