@@ -2,6 +2,7 @@ package kodlamaio.hrms.entities.concretes;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,12 +40,12 @@ public class SchoolJobSeeker {
 	private JobSeeker jobSeeker;
 	
 	@Column(name="date_of_entry")
-	private LocalDate dateOfEntry;
+	private int dateOfEntry;
 	
 	@Column(name="date_of_graduation")
-	private LocalDate dateOfGraduation;
+	private int dateOfGraduation;
 	
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "resume_id")
 	private Resume resume;
 }

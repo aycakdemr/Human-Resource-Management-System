@@ -10,4 +10,5 @@ public interface SchoolJobSeekerService {
 	DataResult<List<SchoolJobSeeker>> getAll();
 	Result add(SchoolJobSeeker schoolJobSeeker);
 	DataResult<List<SchoolJobSeeker>> getByjobSeeker_id(int id);
+	DataResult<List<SchoolJobSeeker>> getAllSorted(int jobSeekerId);
 }

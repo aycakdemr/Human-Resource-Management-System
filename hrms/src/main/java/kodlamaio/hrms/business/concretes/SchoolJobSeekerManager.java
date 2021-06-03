@@ -3,6 +3,7 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.SchoolJobSeekerService;
@@ -40,5 +41,12 @@ public class SchoolJobSeekerManager implements SchoolJobSeekerService{
 	public DataResult<List<SchoolJobSeeker>> getByjobSeeker_id(int id) {
 		return new SuccessDataResult<List<SchoolJobSeeker>>(schoolJobSeekerDao.getByjobSeeker_id(id));
 	}
+
+	@Override
+	public DataResult<List<SchoolJobSeeker>> getAllSorted(int jobSeekerId) {
+		return new SuccessDataResult<List<SchoolJobSeeker>>(this.schoolJobSeekerDao.getByjobSeeker_idOrderByDateOfGraduationAsc(jobSeekerId));
+	}
+	
+
 
 }
