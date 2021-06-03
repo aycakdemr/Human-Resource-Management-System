@@ -9,4 +9,5 @@ import kodlamaio.hrms.entities.concretes.LanguageJobSeeker;
 public interface LanguageJobSeekerService {
 	DataResult<List<LanguageJobSeeker>> getAll();
 	Result add(LanguageJobSeeker languageJobSeeker);
+	DataResult<List<LanguageJobSeeker>> getByjobSeeker_id(int id);
 }

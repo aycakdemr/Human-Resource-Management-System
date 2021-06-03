@@ -9,4 +9,5 @@ import kodlamaio.hrms.entities.concretes.SocialMedia;
 public interface SocialMediaService {
 	DataResult<List<SocialMedia>> getAll();
 	Result add(SocialMedia socialMedia);
+	DataResult<List<SocialMedia>>  getByjobSeeker_id(int id);
 }

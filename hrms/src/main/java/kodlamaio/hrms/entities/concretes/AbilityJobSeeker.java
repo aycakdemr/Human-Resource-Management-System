@@ -2,6 +2,7 @@ package kodlamaio.hrms.entities.concretes;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,4 +36,8 @@ public class AbilityJobSeeker {
 	@ManyToOne()
 	@JoinColumn(name="ability_id")
 	private Ability ability;
+	
+	@ManyToOne()
+	@JoinColumn(name = "resume_id")
+	private Resume resume;
 }

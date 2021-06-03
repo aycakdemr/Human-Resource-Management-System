@@ -1,4 +1,4 @@
-package kodlamaio.hrms.adapters;
+package kodlamaio.hrms.adapters.mernis;
 
 import kodlamaio.hrms.entities.concretes.JobSeeker;
 

@@ -9,4 +9,5 @@ import kodlamaio.hrms.entities.concretes.SchoolJobSeeker;
 public interface SchoolJobSeekerService {
 	DataResult<List<SchoolJobSeeker>> getAll();
 	Result add(SchoolJobSeeker schoolJobSeeker);
+	DataResult<List<SchoolJobSeeker>> getByjobSeeker_id(int id);
 }

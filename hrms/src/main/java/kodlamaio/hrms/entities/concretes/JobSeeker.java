@@ -1,7 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "id")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","schoolJobSeekers","languageJobSeekers","abilityJobSeekers","workPlaceJobSeekers","socialMedias"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","schoolJobSeekers","languageJobSeekers","abilityJobSeekers","workPlaceJobSeekers","socialMedias","resumes","images"})
 
 public class JobSeeker extends User{
 
@@ -65,4 +64,12 @@ public class JobSeeker extends User{
 	@JsonIgnore
 	@OneToMany(mappedBy = "jobseeker")
 	private List<SocialMedia> socialMedias;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobSeeker")
+	private List<Resume> resumes;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobseeker")
+	private List<Image> images;
 }

@@ -1,8 +1,7 @@
-package kodlamaio.hrms.adapters;
+package kodlamaio.hrms.adapters.mernis;
 
 import java.rmi.RemoteException;
 import java.util.Locale;
-
 import kodlamaio.hrms.entities.concretes.JobSeeker;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 

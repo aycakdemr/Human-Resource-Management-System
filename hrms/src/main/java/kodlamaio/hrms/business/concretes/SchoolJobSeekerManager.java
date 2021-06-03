@@ -36,4 +36,9 @@ public class SchoolJobSeekerManager implements SchoolJobSeekerService{
 		return new SuccessResult();
 	}
 
+	@Override
+	public DataResult<List<SchoolJobSeeker>> getByjobSeeker_id(int id) {
+		return new SuccessDataResult<List<SchoolJobSeeker>>(schoolJobSeekerDao.getByjobSeeker_id(id));
+	}
+
 }

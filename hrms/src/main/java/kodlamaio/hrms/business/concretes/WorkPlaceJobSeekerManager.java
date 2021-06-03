@@ -35,5 +35,11 @@ public class WorkPlaceJobSeekerManager implements  WorkPlaceJobSeekerService{
 		this.workPlaceJobSeekerDao.save(workPlaceJobSeeker);
 		return new SuccessResult();
 	}
+
+	@Override
+	public DataResult<List<WorkPlaceJobSeeker>> getByjobSeeker_id(int id) {
+		return new SuccessDataResult<List<WorkPlaceJobSeeker>>(workPlaceJobSeekerDao.getByjobseeker_id(id));
+
+	}
 	
 }

@@ -35,4 +35,9 @@ public class AbilityJobSeekerManager implements AbilityJobSeekerService{
 		return new SuccessResult();
 	}
 
+	@Override
+	public DataResult<List<AbilityJobSeeker>> getByjobSeeker_id(int id) {
+		return new SuccessDataResult<List<AbilityJobSeeker>>(abilityJobSeekerDao.getByjobSeeker_id(id));
+	}
+
 }
