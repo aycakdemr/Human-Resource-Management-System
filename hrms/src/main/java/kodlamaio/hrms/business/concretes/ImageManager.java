@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.business.abstracts.ImageService;
 import kodlamaio.hrms.business.abstracts.JobSeekerService;
 import kodlamaio.hrms.core.utilities.helpers.PhotoUploadHelper;
@@ -24,18 +25,31 @@ public class ImageManager implements ImageService{
 	private ImageDao imageDao;
 	PhotoUploadHelper photoUploadHelper;
 	JobSeekerService jobSeekerService; 
+	EmployerService employerService;
 	
 	@Autowired
-	public ImageManager(ImageDao imageDao, PhotoUploadHelper photoUploadHelper, JobSeekerService jobSeekerService) {
+	public ImageManager(ImageDao imageDao, PhotoUploadHelper photoUploadHelper, 
+			JobSeekerService jobSeekerService,EmployerService employerService) {
 		super();
 		this.imageDao = imageDao;
 		this.photoUploadHelper = photoUploadHelper;
 		this.jobSeekerService = jobSeekerService;
+		this.employerService = employerService;
 	}
 
 	@Override
 	public DataResult<List<Image>> getAll() {
 		return new SuccessDataResult<List<Image>>(imageDao.findAll());
+	}
+
+	
+
+	
+
+	@Override
+	public DataResult<Image> getByjobSeeker_id(int id) {
+		return new SuccessDataResult<Image>(imageDao.getByjobseeker_id(id));
+
 	}
 
 	
@@ -56,11 +70,4 @@ public class ImageManager implements ImageService{
 		return new ErrorResult();
 		
 	}
-
-	@Override
-	public DataResult<Image> getByjobSeeker_id(int id) {
-		return new SuccessDataResult<Image>(imageDao.getByjobseeker_id(id));
-
-	}
-
 }

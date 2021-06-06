@@ -8,24 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.CityService;
+import kodlamaio.hrms.business.abstracts.WayOfWorkingService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.entities.concretes.City;
+import kodlamaio.hrms.entities.concretes.WayOfWorking;
 
 @RestController
-@RequestMapping("/api/cities")
+@RequestMapping("/api/wayofworkings")
 @CrossOrigin
-public class CitiesController {
-
-	private CityService cityService;
+public class WayOfWorkingsController {
+	private WayOfWorkingService wayOfWorkingService;
 	@Autowired
-	public CitiesController(CityService cityService) {
+	public WayOfWorkingsController(WayOfWorkingService wayOfWorkingService) {
 		super();
-		this.cityService = cityService;
+		this.wayOfWorkingService = wayOfWorkingService;
 	}
-	
 	@GetMapping("/getall")
-	public DataResult<List<City>> getAll(){
-		return cityService.getAll();
+	public DataResult<List<WayOfWorking>> getAll(){
+		return this.wayOfWorkingService.getAll();
 	}
 }

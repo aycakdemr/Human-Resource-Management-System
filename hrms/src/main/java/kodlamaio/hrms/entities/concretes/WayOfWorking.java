@@ -8,13 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import kodlamaio.hrms.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,28 +20,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@PrimaryKeyJoinColumn(name = "id")
-@Table(name="employers")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisement"})
-public class Employer extends User{
-
+@Table(name="way_of_workings")
+public class WayOfWorking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-
-	@Column(name="company_name")
-	private String companyName;
 	
-	@Column(name="web_address")
-	private String webAddress;
-	
-	@Column(name="phone_number")
-	private String phoneNumber;
+	@Column(name="name")
+	private String name;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "employer")
+	@OneToMany(mappedBy = "wayofworking")
 	private List<JobAdvertisement> jobAdvertisement;
-
-
 }

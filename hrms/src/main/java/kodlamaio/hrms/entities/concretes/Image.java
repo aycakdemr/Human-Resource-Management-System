@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="images")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","resumes"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","resumes","jobAdvertisements"})
 
 public class Image {
 	@Id
@@ -42,4 +42,6 @@ public class Image {
 	@JsonIgnore
 	@OneToMany(mappedBy = "image")
 	private List<Resume> resumes;
+	
+
 }

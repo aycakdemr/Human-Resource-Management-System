@@ -36,8 +36,20 @@ public class JobAdvertisement {
 	private JobPosition jobPosition;
 	
 	@ManyToOne()
+	@JoinColumn(name="wayofworking_id")
+	private WayOfWorking wayofworking;
+	
+	@ManyToOne()
+	@JoinColumn(name="positionLevel_id")
+	private PositionLevel positionLevel;
+	
+	@ManyToOne()
 	@JoinColumn(name="city_id")
 	private City city;
+	
+	@ManyToOne()
+	@JoinColumn(name="educationLevel_id")
+	private EducationLevel educationLevel;
 	
 	@Column(name="description",length = 2500)
 	private String description;

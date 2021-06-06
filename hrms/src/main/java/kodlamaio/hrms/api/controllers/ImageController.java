@@ -31,7 +31,8 @@ public class ImageController {
 		return imageService.getAll();
 	}
 	@PostMapping("/photoUpload")
-	public Result photoUpload(@RequestParam("photo") MultipartFile photo,@RequestParam("id") int id) {
+	public Result photoUploadtoJobSeeker(@RequestParam("photo") MultipartFile photo,@RequestParam("id") int id) {
 		return  this.imageService.add(photo,id);
 	}
+
 }	
