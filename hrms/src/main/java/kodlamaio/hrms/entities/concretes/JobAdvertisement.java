@@ -2,6 +2,7 @@ package kodlamaio.hrms.entities.concretes;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="job_advertisements")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","approvedJobAdverts"})
 public class JobAdvertisement {
 	
 	@Id
@@ -38,6 +45,10 @@ public class JobAdvertisement {
 	@ManyToOne()
 	@JoinColumn(name="wayofworking_id")
 	private WayOfWorking wayofworking;
+	
+	@ManyToOne()
+	@JoinColumn(name="howtowork_id")
+	private HowToWork workType;
 	
 	@ManyToOne()
 	@JoinColumn(name="positionLevel_id")
@@ -71,6 +82,12 @@ public class JobAdvertisement {
 	
 	@Column(name="is_active")
 	private boolean isActive = true;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobAdvertisement")
+	private List<ApprovedJobAdvert> approvedJobAdverts;
+
+	
 	
 	
 }

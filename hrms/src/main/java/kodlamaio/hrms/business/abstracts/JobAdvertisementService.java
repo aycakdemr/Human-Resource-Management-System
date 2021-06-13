@@ -11,8 +11,10 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAll();
 	DataResult<List<JobAdvertisement>> getByIsActivated();
 	DataResult<List<JobAdvertisement>> getAllSortedByDate();
+	DataResult<List<JobAdvertisement>> getbyId(int id);
 	Result delete(JobAdvertisement jobAdvertisement);
 	Result add(JobAdvertisement jobAdvertisement);
 	Result closeAdvertisement(int id);
 	DataResult<List<JobAdvertisement>> getByAdvertisementByCompany(String companyName);
+	DataResult<List<JobAdvertisement>> getTwoAdvert();
 }

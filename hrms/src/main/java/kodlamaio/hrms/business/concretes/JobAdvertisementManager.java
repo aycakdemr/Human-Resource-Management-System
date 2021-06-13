@@ -55,17 +55,28 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 
 	}
 	@Override
+	public DataResult<List<JobAdvertisement>> getTwoAdvert() {
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByIsActiveAndEmployer_CompanyName(true,"deneme şirketi"));
+
+	}
+	@Override
 	public Result closeAdvertisement(int id) {
 		var value = jobAdvertisementDao.getById(id);
-		if(!value.isActive()) {
+		if(!value.get(0).isActive()) {
 			return new ErrorResult("İlan zaten kapalı!!!");
 		}
 		else {
-			value.setActive(false);
-			this.jobAdvertisementDao.save(value);
+			value.get(0).setActive(false);
+			this.jobAdvertisementDao.save(value.get(0));
 			return new SuccessResult("İlan kapatıldı.");
 		}
 	}
+	@Override
+	public DataResult<List<JobAdvertisement>> getbyId(int id) {
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getById(id));
+
+	}
+	
 
 
 }

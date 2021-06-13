@@ -57,4 +57,12 @@ public class JobAdvertisementsController {
 	public Result closeAdvertisement(@RequestParam int id) {
 		return jobAdvertisementService.closeAdvertisement(id);
 	}
+	@GetMapping("/getTwoAdvert")
+	public DataResult<List<JobAdvertisement>> getTwoAdvert() {
+		return jobAdvertisementService.getTwoAdvert();
+	}
+	@GetMapping("/getbyId")
+	public DataResult<List<JobAdvertisement>> getbyId(int id) {
+		return jobAdvertisementService.getbyId(id);
+	}
 }
