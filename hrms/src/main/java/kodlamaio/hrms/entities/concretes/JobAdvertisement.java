@@ -62,6 +62,9 @@ public class JobAdvertisement {
 	@JoinColumn(name="educationLevel_id")
 	private EducationLevel educationLevel;
 	
+	@Column(name="advert_title")
+	private String advertTitle;
+	
 	@Column(name="description",length = 2500)
 	private String description;
 	
@@ -78,7 +81,7 @@ public class JobAdvertisement {
 	private Date applicationDeadline;
 	
 	@Column(name="created_date")
-	private LocalDateTime createdDate;
+	private Date createdDate;
 	
 	@Column(name="is_active")
 	private boolean isActive = true;
