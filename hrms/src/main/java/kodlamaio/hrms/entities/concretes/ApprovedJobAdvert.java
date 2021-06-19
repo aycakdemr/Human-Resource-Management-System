@@ -28,7 +28,7 @@ public class ApprovedJobAdvert {
 	private int id;
 	
 	@Column(name="is_approved")
-	private boolean isApproved;
+	private boolean isApproved = true;
 	
 	@ManyToOne()
     @JoinColumn(name="job_advertisement_id")
