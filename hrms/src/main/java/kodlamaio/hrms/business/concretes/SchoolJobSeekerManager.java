@@ -46,6 +46,19 @@ public class SchoolJobSeekerManager implements SchoolJobSeekerService{
 	public DataResult<List<SchoolJobSeeker>> getAllSorted(int jobSeekerId) {
 		return new SuccessDataResult<List<SchoolJobSeeker>>(this.schoolJobSeekerDao.getByjobSeeker_idOrderByDateOfGraduationAsc(jobSeekerId));
 	}
+
+	@Override
+	public Result update(SchoolJobSeeker schoolJobSeeker, int id) {
+		var value = schoolJobSeekerDao.getById(id);
+		value.setDateOfEntry(schoolJobSeeker.getDateOfEntry());
+		value.setDateOfGraduation(schoolJobSeeker.getDateOfGraduation());
+		value.setJobSeeker(schoolJobSeeker.getJobSeeker());
+		value.setResume(schoolJobSeeker.getResume());
+		value.setSchool(schoolJobSeeker.getSchool());
+		value.setDepartment(schoolJobSeeker.getDepartment());
+		schoolJobSeekerDao.save(value);
+		return new SuccessResult();
+	}
 	
 
 

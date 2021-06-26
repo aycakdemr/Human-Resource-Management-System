@@ -40,4 +40,8 @@ public class SchoolJobSeekerController {
 	public DataResult<List<SchoolJobSeeker>> getAllSorted(@RequestParam int jobSeekerId){
 		return this.schoolJobSeekerService.getAllSorted(jobSeekerId);
 	}
+	@PostMapping("/update")
+	public Result update(@RequestBody SchoolJobSeeker schoolJobSeeker,@RequestParam int id) {
+		return this.schoolJobSeekerService.update(schoolJobSeeker,id);
+	}
 }

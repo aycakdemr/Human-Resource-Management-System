@@ -41,6 +41,17 @@ public class LanguageJobSeekerManager implements LanguageJobSeekerService{
 		return new SuccessDataResult<List<LanguageJobSeeker>>(languageJobSeekerDao.getByjobseeker_id(id));
 
 	}
+
+	@Override
+	public Result update(LanguageJobSeeker languageJobSeeker, int id) {
+		var value = languageJobSeekerDao.getById(id);
+		value.setLanguage(languageJobSeeker.getLanguage());
+		value.setJobseeker(languageJobSeeker.getJobseeker());
+		value.setLanguageLevel(languageJobSeeker.getLanguageLevel());
+		value.setResume(languageJobSeeker.getResume());
+		languageJobSeekerDao.save(value);
+		return new SuccessResult();
+	}
 	
 	
 }

@@ -32,8 +32,12 @@ public class SchoolJobSeeker {
 	private int id;
 	
 	@ManyToOne()
-	@JoinColumn(name="school_department_id")
-	private SchoolDepartment schoolDepartment;
+	@JoinColumn(name="department_id")
+	private Department department;
+	
+	@ManyToOne()
+	@JoinColumn(name="school_id")
+	private School school;
 	
 	@ManyToOne()
 	@JoinColumn(name="jobseeker_id")
@@ -45,7 +49,7 @@ public class SchoolJobSeeker {
 	@Column(name="date_of_graduation")
 	private int dateOfGraduation;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name = "resume_id")
 	private Resume resume;
 }

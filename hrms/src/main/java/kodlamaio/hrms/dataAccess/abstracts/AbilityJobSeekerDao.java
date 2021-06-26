@@ -9,4 +9,5 @@ import kodlamaio.hrms.entities.concretes.AbilityJobSeeker;
 
 public interface AbilityJobSeekerDao extends JpaRepository<AbilityJobSeeker, Integer>{
 	List<AbilityJobSeeker> getByjobSeeker_id(int id);
+	AbilityJobSeeker getById(int id);
 }

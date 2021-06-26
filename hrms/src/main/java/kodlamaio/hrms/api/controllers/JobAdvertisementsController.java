@@ -33,9 +33,13 @@ public class JobAdvertisementsController {
 	public DataResult<List<JobAdvertisement>> getAll(){
 		return jobAdvertisementService.getAll();
 	}
-	@GetMapping("/getByIsActivated")
-	public DataResult<List<JobAdvertisement>> getByIsActivated(){
-		return jobAdvertisementService.getByIsActivated();
+	@GetMapping("/getByIsActivatedTrue")
+	public DataResult<List<JobAdvertisement>> getByIsActivatedTrue(){
+		return jobAdvertisementService.getByIsActivatedTrue();
+	}
+	@GetMapping("/getByIsActivatedFalse")
+	public DataResult<List<JobAdvertisement>> getByIsActivatedFalse(){
+		return jobAdvertisementService.getByIsActivatedFalse();
 	}
 	@GetMapping("/getAllSortedByDate")
 	public DataResult<List<JobAdvertisement>> getAllSortedByDate(){
@@ -64,5 +68,11 @@ public class JobAdvertisementsController {
 	@GetMapping("/getbyId")
 	public DataResult<List<JobAdvertisement>> getbyId(int id) {
 		return jobAdvertisementService.getbyId(id);
+	}
+	
+	@GetMapping("/getbyFilter")
+	public DataResult<List<JobAdvertisement>> getbyFilter(@RequestParam int jobPositionId,@RequestParam int companySectorId,@RequestParam int wayOfWorkingId,
+			@RequestParam int positionLevelId, @RequestParam int educationLevelId,@RequestParam  int cityId) {
+		return jobAdvertisementService.getbyFilter(jobPositionId,companySectorId,wayOfWorkingId,positionLevelId,educationLevelId,cityId);
 	}
 }

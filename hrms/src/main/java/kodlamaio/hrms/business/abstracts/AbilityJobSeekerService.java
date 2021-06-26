@@ -9,5 +9,7 @@ import kodlamaio.hrms.entities.concretes.AbilityJobSeeker;
 public interface AbilityJobSeekerService {
 	DataResult<List<AbilityJobSeeker>> getAll();
 	Result add(AbilityJobSeeker abilityJobSeeker);
+	Result update(AbilityJobSeeker abilityJobSeeker,int id);
+	Result delete(AbilityJobSeeker abilityJobSeeker);
 	DataResult<List<AbilityJobSeeker>> getByjobSeeker_id(int id);
 }

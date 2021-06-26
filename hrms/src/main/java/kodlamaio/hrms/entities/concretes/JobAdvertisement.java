@@ -16,6 +16,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +35,7 @@ public class JobAdvertisement {
 	@Column(name="id")
 	private int id;
 	
+
 	@ManyToOne()
     @JoinColumn(name="employer_id")
     private Employer employer;

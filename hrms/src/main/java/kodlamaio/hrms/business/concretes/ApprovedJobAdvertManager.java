@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.ApprovedJobAdvertService;
+import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -18,11 +19,13 @@ import kodlamaio.hrms.entities.concretes.WayOfWorking;
 public class ApprovedJobAdvertManager implements ApprovedJobAdvertService{
 
 	private ApprovedJobAdvertDao approvedJobAdvertDao;
+	private JobAdvertisementService jobAdvertisementService;
 	
 	@Autowired
-	public ApprovedJobAdvertManager(ApprovedJobAdvertDao approvedJobAdvertDao) {
+	public ApprovedJobAdvertManager(ApprovedJobAdvertDao approvedJobAdvertDao,JobAdvertisementService jobAdvertisementService) {
 		super();
 		this.approvedJobAdvertDao = approvedJobAdvertDao;
+		this.jobAdvertisementService = jobAdvertisementService;
 	}
 
 
@@ -35,6 +38,9 @@ public class ApprovedJobAdvertManager implements ApprovedJobAdvertService{
 	@Override
 	public Result add(ApprovedJobAdvert approvedJobAdvert) {
 		this.approvedJobAdvertDao.save(approvedJobAdvert);
+		var advert =this.jobAdvertisementService.getbyId(approvedJobAdvert.getJobAdvertisement().getId());
+		advert.getData().get(0).setActive(true);
+		this.jobAdvertisementService.add(advert.getData().get(0));
 		return new SuccessResult();
 	}
 

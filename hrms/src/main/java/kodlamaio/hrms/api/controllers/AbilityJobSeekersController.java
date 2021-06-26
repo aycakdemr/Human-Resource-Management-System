@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.AbilityJobSeekerService;
@@ -35,6 +36,14 @@ public class AbilityJobSeekersController {
     public Result add(@RequestBody AbilityJobSeeker abilityJobSeeker){
         return this.abilityJobSeekerService.add(abilityJobSeeker);
     }
+	@PostMapping("/delete")
+    public Result delete(@RequestBody AbilityJobSeeker abilityJobSeeker){
+        return this.abilityJobSeekerService.delete(abilityJobSeeker);
+    }
 	
+	@PostMapping("/update")
+	public Result update(@RequestBody AbilityJobSeeker abilityJobSeeker,@RequestParam int id){
+		return this.abilityJobSeekerService.update(abilityJobSeeker,id);
+	}
 	
 }

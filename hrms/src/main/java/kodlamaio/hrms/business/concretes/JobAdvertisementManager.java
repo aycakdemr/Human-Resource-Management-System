@@ -31,8 +31,12 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.findAll());
 	}
 	@Override
-	public DataResult<List<JobAdvertisement>> getByIsActivated() {
+	public DataResult<List<JobAdvertisement>> getByIsActivatedTrue() {
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByisActive(true));
+	}
+	@Override
+	public DataResult<List<JobAdvertisement>> getByIsActivatedFalse() {
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByisActive(false));
 	}
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllSortedByDate() {
@@ -76,6 +80,15 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getById(id));
 
 	}
+	@Override
+	public DataResult<List<JobAdvertisement>> getbyFilter(int jobPositionId, int companySectorId, int wayOfWorkingId,
+			int positionLevelId, int educationLevelId, int cityId) {
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByjobPosition_idAndEmployer_companysector_idAndWayofworking_idAndPositionLevel_idAndEducationLevel_idAndCity_id
+				(jobPositionId,companySectorId,wayOfWorkingId,positionLevelId,educationLevelId,cityId));
+
+	}
+	
+
 	
 
 

@@ -29,19 +29,18 @@ public class WorkPlaceJobSeeker {
 	@Column(name="id")
 	private int id;
 	
-	@ManyToOne()
-	@JoinColumn(name="workplace_id")
-	private WorkPlace workplace;
+	@Column(name="workplace_name")
+	private String workplaceName;
 	
 	@ManyToOne()
 	@JoinColumn(name="jobseeker_id")
 	private JobSeeker jobseeker;
 	
 	@Column(name="date_of_entry")
-	private LocalDate dateOfEntry;
+	private int dateOfEntry;
 	
 	@Column(name="date_of_leaving")
-	private LocalDate dateOfLeaving;
+	private int dateOfLeaving;
 	
 	@ManyToOne()
 	@JoinColumn(name = "resume_id")

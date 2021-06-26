@@ -9,9 +9,11 @@ import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 public interface JobAdvertisementService {
 
 	DataResult<List<JobAdvertisement>> getAll();
-	DataResult<List<JobAdvertisement>> getByIsActivated();
+	DataResult<List<JobAdvertisement>> getByIsActivatedTrue();
+	DataResult<List<JobAdvertisement>> getByIsActivatedFalse();
 	DataResult<List<JobAdvertisement>> getAllSortedByDate();
 	DataResult<List<JobAdvertisement>> getbyId(int id);
+	DataResult<List<JobAdvertisement>> getbyFilter(int jobPositionId,int companySectorId,int wayOfWorkingId, int positionLevelId,int educationLevelId,int cityId);
 	Result delete(JobAdvertisement jobAdvertisement);
 	Result add(JobAdvertisement jobAdvertisement);
 	Result closeAdvertisement(int id);

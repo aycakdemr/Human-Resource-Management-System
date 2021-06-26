@@ -40,4 +40,24 @@ public class AbilityJobSeekerManager implements AbilityJobSeekerService{
 		return new SuccessDataResult<List<AbilityJobSeeker>>(abilityJobSeekerDao.getByjobSeeker_id(id));
 	}
 
+	@Override
+	public Result delete(AbilityJobSeeker abilityJobSeeker) {
+		var value = abilityJobSeekerDao.getById(abilityJobSeeker.getId());
+		this.abilityJobSeekerDao.delete(value);
+		return new SuccessResult();
+	}
+
+	@Override
+	public Result update(AbilityJobSeeker abilityJobSeeker,int id) {
+		var value = abilityJobSeekerDao.getById(id);
+		value.setAbility(abilityJobSeeker.getAbility());
+		value.setJobSeeker(abilityJobSeeker.getJobSeeker());
+		value.setResume(abilityJobSeeker.getResume());
+		abilityJobSeekerDao.save(value);
+		return new SuccessResult();
+		
+	}
+
+	
+
 }

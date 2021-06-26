@@ -11,7 +11,6 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.WorkPlaceJobSeekerDao;
-import kodlamaio.hrms.entities.concretes.WorkPlace;
 import kodlamaio.hrms.entities.concretes.WorkPlaceJobSeeker;
 
 @Service
@@ -40,6 +39,18 @@ public class WorkPlaceJobSeekerManager implements  WorkPlaceJobSeekerService{
 	public DataResult<List<WorkPlaceJobSeeker>> getByjobSeeker_id(int id) {
 		return new SuccessDataResult<List<WorkPlaceJobSeeker>>(workPlaceJobSeekerDao.getByjobseeker_id(id));
 
+	}
+
+	@Override
+	public Result update(WorkPlaceJobSeeker workPlaceJobSeeker, int id) {
+		var value = workPlaceJobSeekerDao.getById(id);
+		value.setDateOfEntry(workPlaceJobSeeker.getDateOfEntry());
+		value.setDateOfLeaving(workPlaceJobSeeker.getDateOfLeaving());
+		value.setJobseeker(workPlaceJobSeeker.getJobseeker());
+		value.setResume(workPlaceJobSeeker.getResume());
+		value.setWorkplaceName(workPlaceJobSeeker.getWorkplaceName());
+		workPlaceJobSeekerDao.save(value);
+		return new SuccessResult();
 	}
 	
 }
