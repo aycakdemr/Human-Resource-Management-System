@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmployerService;
+import kodlamaio.hrms.business.abstracts.OldEmployerService;
 import kodlamaio.hrms.business.abstracts.VerificationService;
 import kodlamaio.hrms.core.utilities.business.BusinessRules;
 import kodlamaio.hrms.core.utilities.results.DataResult;
@@ -15,6 +16,8 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.concretes.EmployerCase;
+import kodlamaio.hrms.entities.concretes.OldEmployer;
 import kodlamaio.hrms.entities.concretes.Verification;
 
 @Service
@@ -23,12 +26,15 @@ public class EmployerManager implements EmployerService{
 	
 	private EmployerDao employerDao;
 	private VerificationService verificationService;
+	private OldEmployerService oldEmployerService;
 	
 	@Autowired
-	public EmployerManager(EmployerDao employerDao,VerificationService verificationService) {
+	public EmployerManager(EmployerDao employerDao,VerificationService verificationService,
+			OldEmployerService oldEmployerService) {
 		super();
 		this.employerDao = employerDao;
 		this.verificationService = verificationService;
+		this.oldEmployerService = oldEmployerService;
 	}
 
 
@@ -56,8 +62,6 @@ public class EmployerManager implements EmployerService{
 		return result;
 		
 	}
-
-
 
 	private Result controlEMail(Employer employer) {
 		if(employerDao.getByemail(employer.getEmail()) != null){
@@ -88,8 +92,64 @@ public class EmployerManager implements EmployerService{
 
 
 	@Override
-	public DataResult<Employer> getbyid(int id) {
-		return new SuccessDataResult(employerDao.getByid(id));
+	public DataResult<Employer> getByIdForUsers(int id) {
+		var value = employerDao.getByid(id);
+		if(value.getEmployerCase().getId() == 1) {
+			return new SuccessDataResult<Employer>(this.employerDao.getByid(id));
+		}
+		else if(value.getEmployerCase().getId() == 2) {
+			return new SuccessDataResult(oldEmployerService.getbyEmployerid(id),(value.getEmployerCase().getCaseName()));
+		}
+		else {
+			return new SuccessDataResult(oldEmployerService.getbyEmployerid(id),(value.getEmployerCase().getCaseName()).toString());
+		}
+		
 	}
+
+
+	@Override
+	public Result update(Employer employer, int id) {
+		var value = employerDao.getByid(id);
+		var oldValue = new OldEmployer();
+		oldValue.setCompanyName(value.getCompanyName());
+		oldValue.setCompanysector(value.getCompanysector());
+		oldValue.setEmail(value.getEmail());
+		oldValue.setPassword(value.getPassword());
+		oldValue.setPhoneNumber(value.getPhoneNumber());
+		oldValue.setWebAddress(value.getWebAddress());
+		oldValue.setEmployer(value);
+		this.oldEmployerService.add(oldValue);
+		value.setCompanyName(employer.getCompanyName());
+		value.setEmail(employer.getEmail());
+		value.setCompanysector(employer.getCompanysector());
+		value.setPassword(employer.getPassword());
+		value.setPhoneNumber(employer.getPhoneNumber());
+		value.setWebAddress(employer.getWebAddress());
+		value.setEmployerCase(employer.getEmployerCase());
+		employerDao.save(value);
+		return new SuccessResult();
+	}
+
+
+
+	@Override
+	public Result ConfirmUpdate(EmployerCase employerCase, int EmployerId) {
+		
+		var value = employerDao.getByid(EmployerId);
+		value.setEmployerCase(employerCase);
+		employerDao.save(value);
+		return new SuccessResult();
+	}
+
+
+	@Override
+	public DataResult<Employer> getByIdForAdmins(int id) {
+		return new SuccessDataResult<Employer>(this.employerDao.getByid(id));
+	}
+
+
+	
+
+	
 
 }

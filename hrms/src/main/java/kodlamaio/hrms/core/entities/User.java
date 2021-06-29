@@ -29,7 +29,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","verifications"})
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

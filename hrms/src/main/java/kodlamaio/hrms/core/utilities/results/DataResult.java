@@ -13,6 +13,11 @@ public class DataResult<T> extends Result {
 		this.data = data;
 		// TODO Auto-generated constructor stub
 	}
+	public DataResult(T data,String message) {
+		super(message);
+		this.data = data;
+		// TODO Auto-generated constructor stub
+	}
 
 	public T getData() {
 		return this.data;

@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import kodlamaio.hrms.entities.concretes.Employer;
 public interface EmployerDao extends JpaRepository<Employer, Integer>{
 	Employer getByemail(String eMail);
-	List<Employer> getByid(int id);
+	Employer getByid(int id);
 }

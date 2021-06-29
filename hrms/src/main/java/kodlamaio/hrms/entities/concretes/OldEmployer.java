@@ -1,7 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -29,12 +26,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "id")
-@Table(name="employers")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisement"})
-public class Employer extends User{
-
-
-
+@Table(name="old_employers")
+public class OldEmployer extends User{
+	
 	@Column(name="company_name")
 	private String companyName;
 	
@@ -49,14 +43,13 @@ public class Employer extends User{
 	private CompanySector companysector;
 	
 	@ManyToOne()
+	@JoinColumn(name="employer_id")
+	private Employer employer;
+	
+	@ManyToOne()
 	@JoinColumn(name="employer_case_id")
 	private EmployerCase employerCase;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "employer")
-	private List<JobAdvertisement> jobAdvertisement;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "employer")
-	private List<OldEmployer> oldEmployers;
+	
+	
 }

@@ -13,6 +13,7 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getByIsActivatedFalse();
 	DataResult<List<JobAdvertisement>> getAllSortedByDate();
 	DataResult<List<JobAdvertisement>> getbyId(int id);
+	DataResult<List<JobAdvertisement>> getByEmployerId(int id);
 	DataResult<List<JobAdvertisement>> getbyFilter(int jobPositionId,int companySectorId,int wayOfWorkingId, int positionLevelId,int educationLevelId,int cityId);
 	Result delete(JobAdvertisement jobAdvertisement);
 	Result add(JobAdvertisement jobAdvertisement);

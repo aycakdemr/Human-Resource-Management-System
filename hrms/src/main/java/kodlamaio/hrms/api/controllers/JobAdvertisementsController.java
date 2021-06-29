@@ -75,4 +75,8 @@ public class JobAdvertisementsController {
 			@RequestParam int positionLevelId, @RequestParam int educationLevelId,@RequestParam  int cityId) {
 		return jobAdvertisementService.getbyFilter(jobPositionId,companySectorId,wayOfWorkingId,positionLevelId,educationLevelId,cityId);
 	}
+	@GetMapping("/getByEmployerId")
+	public DataResult<List<JobAdvertisement>> getByEmployerId(int id){
+		return jobAdvertisementService.getByEmployerId(id);
+	}
 }
