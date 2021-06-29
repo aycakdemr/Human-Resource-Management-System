@@ -16,4 +16,5 @@ public interface EmployerService {
 	Result update(Employer employer,int id);
 	DataResult<Employer> getByIdForUsers(int id);
 	DataResult<Employer> getByIdForAdmins(int id);
+	DataResult<List<Employer>> getByEmployerCase_id();
 }

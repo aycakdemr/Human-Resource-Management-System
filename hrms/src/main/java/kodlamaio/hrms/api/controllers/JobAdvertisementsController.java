@@ -79,4 +79,10 @@ public class JobAdvertisementsController {
 	public DataResult<List<JobAdvertisement>> getByEmployerId(int id){
 		return jobAdvertisementService.getByEmployerId(id);
 	}
+	
+	@GetMapping("getByisActive")
+    public DataResult<List<JobAdvertisement>> getByisActive(@RequestParam int pageNumber,
+            @RequestParam int pageSize) {
+        return this.jobAdvertisementService.getByisActive(pageNumber, pageSize);
+    }
 }

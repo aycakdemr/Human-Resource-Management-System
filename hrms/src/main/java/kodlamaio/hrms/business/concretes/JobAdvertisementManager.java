@@ -3,6 +3,8 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -83,6 +85,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	@Override
 	public DataResult<List<JobAdvertisement>> getbyFilter(int jobPositionId, int companySectorId, int wayOfWorkingId,
 			int positionLevelId, int educationLevelId, int cityId) {
+		
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByjobPosition_idAndEmployer_companysector_idAndWayofworking_idAndPositionLevel_idAndEducationLevel_idAndCity_id
 				(jobPositionId,companySectorId,wayOfWorkingId,positionLevelId,educationLevelId,cityId));
 
@@ -90,6 +93,12 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	@Override
 	public DataResult<List<JobAdvertisement>> getByEmployerId(int id) {
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByEmployer_id(id));
+	}
+	@Override
+	public DataResult<List<JobAdvertisement>> getByisActive(int pageNumber, int pageSize) {
+		 Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+	        return new SuccessDataResult<List<JobAdvertisement>>(
+	                this.jobAdvertisementDao.getByisActive(true,pageable));
 	}
 	
 

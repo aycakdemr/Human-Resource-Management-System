@@ -54,4 +54,9 @@ public class EmployerController {
 	public Result ConfirmUpdate(@RequestBody EmployerCase employerCase,@RequestParam int EmployerId) {
 		return this.employerService.ConfirmUpdate(employerCase,EmployerId);
 	}
+	
+	@GetMapping("/getByEmployerCaseId")
+	public DataResult<List<Employer>> getByEmployerCase_id() {
+		return this.employerService.getByEmployerCase_id();
+	}
 }

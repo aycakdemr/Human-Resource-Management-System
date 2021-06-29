@@ -118,7 +118,22 @@ public class EmployerManager implements EmployerService{
 		oldValue.setPhoneNumber(value.getPhoneNumber());
 		oldValue.setWebAddress(value.getWebAddress());
 		oldValue.setEmployer(value);
-		this.oldEmployerService.add(oldValue);
+		oldValue.setEmployerCase(employer.getEmployerCase());
+		if(this.oldEmployerService.getbyEmployerid(id)== null) {
+			this.oldEmployerService.add(oldValue);
+		}
+		else {
+			var valueForUpdate = this.oldEmployerService.getbyEmployerid(id);
+			valueForUpdate.setCompanyName(oldValue.getCompanyName());
+			valueForUpdate.setCompanysector(oldValue.getCompanysector());
+			valueForUpdate.setEmail(oldValue.getEmail());
+			valueForUpdate.setPassword(oldValue.getPassword());
+			valueForUpdate.setPhoneNumber(oldValue.getPhoneNumber());
+			valueForUpdate.setWebAddress(oldValue.getWebAddress());
+			valueForUpdate.setEmployer(value);
+			valueForUpdate.setEmployerCase(employer.getEmployerCase());
+		}
+		
 		value.setCompanyName(employer.getCompanyName());
 		value.setEmail(employer.getEmail());
 		value.setCompanysector(employer.getCompanysector());
@@ -145,6 +160,12 @@ public class EmployerManager implements EmployerService{
 	@Override
 	public DataResult<Employer> getByIdForAdmins(int id) {
 		return new SuccessDataResult<Employer>(this.employerDao.getByid(id));
+	}
+
+
+	@Override
+	public DataResult<List<Employer>> getByEmployerCase_id() {
+		return new SuccessDataResult<List<Employer>>(employerDao.getByEmployerCase_id(2));
 	}
 
 
