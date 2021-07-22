@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.WorkPlaceJobSeekerService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.entities.concretes.SocialMedia;
 import kodlamaio.hrms.entities.concretes.WorkPlaceJobSeeker;
 
 @RestController
@@ -39,5 +40,9 @@ public class WorkPlacesJobSeekersController {
 	@PostMapping("/update")
 	public Result update(@RequestBody WorkPlaceJobSeeker workPlaceJobSeeker,@RequestParam int id) {
 		return this.workPlaceJobSeekerService.update(workPlaceJobSeeker,id);
+	}
+	@GetMapping("/getbyJobSeekerId")
+	public DataResult<List<WorkPlaceJobSeeker>> getbyJobSeekerId(int id) {
+		return workPlaceJobSeekerService.getByjobSeeker_id(id);
 	}
 }

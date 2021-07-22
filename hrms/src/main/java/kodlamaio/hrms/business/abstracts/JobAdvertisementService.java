@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dto.JobAdvertFilterDto;
 
 public interface JobAdvertisementService {
 
@@ -17,7 +18,7 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAllSortedByDate();
 	DataResult<List<JobAdvertisement>> getbyId(int id);
 	DataResult<List<JobAdvertisement>> getByEmployerId(int id);
-	DataResult<List<JobAdvertisement>> getbyFilter(int jobPositionId,int companySectorId,int wayOfWorkingId, int positionLevelId,int educationLevelId,int cityId);
+	DataResult<List<JobAdvertisement>> getbyFilter(int pageNo, int pageSize, JobAdvertFilterDto filter);
 	Result delete(JobAdvertisement jobAdvertisement);
 	Result add(JobAdvertisement jobAdvertisement);
 	Result closeAdvertisement(int id);

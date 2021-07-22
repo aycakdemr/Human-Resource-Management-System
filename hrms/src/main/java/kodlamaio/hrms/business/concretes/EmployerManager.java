@@ -151,7 +151,9 @@ public class EmployerManager implements EmployerService{
 	public Result ConfirmUpdate(EmployerCase employerCase, int EmployerId) {
 		
 		var value = employerDao.getByid(EmployerId);
+		var oldValue = this.oldEmployerService.getbyEmployerid(EmployerId)	;
 		value.setEmployerCase(employerCase);
+		oldValue.setEmployerCase(employerCase);
 		employerDao.save(value);
 		return new SuccessResult();
 	}

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.SchoolJobSeekerService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.entities.concretes.LanguageJobSeeker;
 import kodlamaio.hrms.entities.concretes.SchoolJobSeeker;
 
 @RestController
@@ -43,5 +44,9 @@ public class SchoolJobSeekerController {
 	@PostMapping("/update")
 	public Result update(@RequestBody SchoolJobSeeker schoolJobSeeker,@RequestParam int id) {
 		return this.schoolJobSeekerService.update(schoolJobSeeker,id);
+	}
+	@GetMapping("/getbyJobSeekerId")
+	public DataResult<List<SchoolJobSeeker>> getbyJobSeekerId(int id) {
+		return schoolJobSeekerService.getByjobSeeker_id(id);
 	}
 }

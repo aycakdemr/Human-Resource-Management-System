@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.JobSeekerService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.concretes.JobSeeker;
 import kodlamaio.hrms.core.utilities.results.Result;
 
@@ -35,5 +36,9 @@ public class JobSeekersController {
 	@GetMapping("/getall")
 	public DataResult<List<JobSeeker>> getAll(){
 		return jobSeekerService.getAll();
+	}
+	@GetMapping("/getbyId")
+	public DataResult<JobSeeker> getbyId(int id) {
+		return jobSeekerService.getByjobSeeker_id(id);
 	}
 }

@@ -15,6 +15,7 @@ import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dto.JobAdvertFilterDto;
 
 @RestController
 @RequestMapping("/api/jobadvertisements")
@@ -70,10 +71,9 @@ public class JobAdvertisementsController {
 		return jobAdvertisementService.getbyId(id);
 	}
 	
-	@GetMapping("/getbyFilter")
-	public DataResult<List<JobAdvertisement>> getbyFilter(@RequestParam int jobPositionId,@RequestParam int companySectorId,@RequestParam int wayOfWorkingId,
-			@RequestParam int positionLevelId, @RequestParam int educationLevelId,@RequestParam  int cityId) {
-		return jobAdvertisementService.getbyFilter(jobPositionId,companySectorId,wayOfWorkingId,positionLevelId,educationLevelId,cityId);
+	@PostMapping("/getbyFilter")
+	public DataResult<List<JobAdvertisement>> getbyFilter(@RequestParam int pageNo, @RequestParam int pageSize,@RequestBody JobAdvertFilterDto filter){
+		return jobAdvertisementService.getbyFilter(pageNo, pageSize, filter);
 	}
 	@GetMapping("/getByEmployerId")
 	public DataResult<List<JobAdvertisement>> getByEmployerId(int id){

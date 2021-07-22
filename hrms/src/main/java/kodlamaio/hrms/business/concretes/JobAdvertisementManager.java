@@ -16,6 +16,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dto.JobAdvertFilterDto;
 
 
 @Service
@@ -82,14 +83,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getById(id));
 
 	}
-	@Override
-	public DataResult<List<JobAdvertisement>> getbyFilter(int jobPositionId, int companySectorId, int wayOfWorkingId,
-			int positionLevelId, int educationLevelId, int cityId) {
-		
-		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByjobPosition_idAndEmployer_companysector_idAndWayofworking_idAndPositionLevel_idAndEducationLevel_idAndCity_id
-				(jobPositionId,companySectorId,wayOfWorkingId,positionLevelId,educationLevelId,cityId));
-
-	}
+	
 	@Override
 	public DataResult<List<JobAdvertisement>> getByEmployerId(int id) {
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByEmployer_id(id));
@@ -99,6 +93,11 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		 Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
 	        return new SuccessDataResult<List<JobAdvertisement>>(
 	                this.jobAdvertisementDao.getByisActive(true,pageable));
+	}
+	@Override
+	public DataResult<List<JobAdvertisement>> getbyFilter(int pageNo, int pageSize, JobAdvertFilterDto filter) {
+		Pageable pageable = PageRequest.of(pageNo -1, pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByFilteredAdverts(filter, pageable));
 	}
 	
 

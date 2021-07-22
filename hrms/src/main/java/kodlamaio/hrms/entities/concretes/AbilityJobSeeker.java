@@ -38,6 +38,9 @@ public class AbilityJobSeeker {
 	@JoinColumn(name="ability_id")
 	private Ability ability;
 	
+	@Column(name="degree")
+	private String degree;
+	
 	@ManyToOne()
 	@JoinColumn(name = "resume_id")
 	private Resume resume;

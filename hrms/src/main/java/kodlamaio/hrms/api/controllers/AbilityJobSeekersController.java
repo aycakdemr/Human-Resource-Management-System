@@ -15,6 +15,7 @@ import kodlamaio.hrms.business.abstracts.AbilityJobSeekerService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.AbilityJobSeeker;
+import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @RestController
 @RequestMapping("/api/abilityjobseekers")
@@ -44,6 +45,10 @@ public class AbilityJobSeekersController {
 	@PostMapping("/update")
 	public Result update(@RequestBody AbilityJobSeeker abilityJobSeeker,@RequestParam int id){
 		return this.abilityJobSeekerService.update(abilityJobSeeker,id);
+	}
+	@GetMapping("/getbyJobSeekerId")
+	public DataResult<List<AbilityJobSeeker>> getbyJobSeekerId(int id) {
+		return abilityJobSeekerService.getByjobSeeker_id(id);
 	}
 	
 }

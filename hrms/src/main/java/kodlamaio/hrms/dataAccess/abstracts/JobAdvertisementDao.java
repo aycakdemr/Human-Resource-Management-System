@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dto.JobAdvertFilterDto;
 
 
 
@@ -20,23 +23,17 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	List<JobAdvertisement> getByEmployer_id(int id);
 
 	List<JobAdvertisement> getByIsActiveAndEmployer_CompanyName(boolean IsActive,String companyName);
+		
 	
-	List<JobAdvertisement> getByjobPosition_id
-	(int jobPositionId);
 	
-	List<JobAdvertisement> getByjobPosition_idAndEmployer_companysector_id
-	(int jobPositionId,int companySectorId);
-	
-	List<JobAdvertisement> getByjobPosition_idAndEmployer_companysector_idAndWayofworking_id
-	(int jobPositionId,int companySectorId,int wayOfWorkingId);
-	
-	List<JobAdvertisement> getByjobPosition_idAndEmployer_companysector_idAndWayofworking_idAndPositionLevel_id
-	(int jobPositionId,int companySectorId,int wayOfWorkingId, int positionLevelId);
-	
-	List<JobAdvertisement> getByjobPosition_idAndEmployer_companysector_idAndWayofworking_idAndPositionLevel_idAndEducationLevel_id
-	(int jobPositionId,int companySectorId,int wayOfWorkingId, int positionLevelId,int educationLevelId);
-	
-	List<JobAdvertisement> getByjobPosition_idAndEmployer_companysector_idAndWayofworking_idAndPositionLevel_idAndEducationLevel_idAndCity_id
-	(int jobPositionId,int companySectorId,int wayOfWorkingId, int positionLevelId,int educationLevelId,int cityId);
+	@Query("Select j from kodlamaio.hrms.entities.concretes.JobAdvertisement j where "
+			+ "((:#{#filter.cityId}) IS NULL OR j.city.id IN (:#{#filter.cityId}))"
+	        +" and ((:#{#filter.jobPositionId}) IS NULL OR j.jobPosition.id IN (:#{#filter.jobPositionId}))"
+	        +" and ((:#{#filter.companySectorId}) IS NULL OR j.employer.companysector.id IN (:#{#filter.companySectorId}))"
+	        +" and ((:#{#filter.wayOfWorkingId}) IS NULL OR j.wayofworking.id IN (:#{#filter.wayOfWorkingId}))"
+	        +" and ((:#{#filter.positionLevelId}) IS NULL OR j.positionLevel.id IN (:#{#filter.positionLevelId}))"
+	        +" and ((:#{#filter.educationLevelId}) IS NULL OR j.educationLevel.id IN (:#{#filter.educationLevelId}))"
+	        +" and j.isActive=true")
+	List<JobAdvertisement> getByFilteredAdverts(@Param("filter") JobAdvertFilterDto jobAdvertFilterDto, Pageable pageable);
 
 }
